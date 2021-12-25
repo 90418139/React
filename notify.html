@@ -39,8 +39,36 @@
     // .catch((error) => {
     //     console.error("Error adding document: ", error);
     // });
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const userId = urlParams.get('state');
+    // const data = {
+    //     grant_type: 'authorization_code',
+    //     code: code,
+    //     redirect_uri: 'https://90418139.github.io/React/notify',
+    //     client_id: 'MiC6LIxtzUOk6sipXu6XEN',
+    //     client_secret: '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn'
+    // };
+    // fetch("https://notify-bot.line.me/oauth/token",
+    //     {
+    //         method: "POST",
+    //         mode: 'cors',
+    //         headers: {
+    //             "Content-Type": "application/x-www-form-urlencoded",
+    //             'Access-Control-Allow-Origin': "*"
+    //         },
+    //         body: new URLSearchParams(data),
+    //     }
+    // )
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data)
+    // })
+    // .catch(e => {
+    //     console.error(e);
+    // });
     let root = document.getElementById('root');
-    root.innerText = window.location.href;
+    root.innerText = window.location.href + ' ' + code + ' ' + userId;
 </script>
 </body>
 </html>
