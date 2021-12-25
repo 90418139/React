@@ -10,35 +10,35 @@
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root">TEST</div>
+<div id="root"></div>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 <script>
-    const firebase = require("firebase");
-    // Required for side-effects
-    require("firebase/firestore");
-    // Initialize Cloud Firestore through Firebase
-    firebase.initializeApp({
-        apiKey: "AIzaSyAPCDWzc10yjGG-CmsCXGvZgmOmZ0AybYQ",
-        authDomain: "remind-7d375.firebaseapp.com",
-        databaseURL: "https://remind-7d375-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "remind-7d375",
-        storageBucket: "remind-7d375.appspot.com",
-        messagingSenderId: "870876543636",
-        appId: "1:870876543636:web:c2005de339a9fba189d281",
-        measurementId: "G-DN5M7P6BMZ"
-    });
-    let db = firebase.firestore();
-    db.collection("Remind2").add({
-        userId: "Ada",
-        notify: "Lovelace",
-    })
-    .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    });
+    // const firebase = require("firebase");
+    // // Required for side-effects
+    // require("firebase/firestore");
+    // // Initialize Cloud Firestore through Firebase
+    // firebase.initializeApp({
+    //     apiKey: "AIzaSyAPCDWzc10yjGG-CmsCXGvZgmOmZ0AybYQ",
+    //     authDomain: "remind-7d375.firebaseapp.com",
+    //     databaseURL: "https://remind-7d375-default-rtdb.asia-southeast1.firebasedatabase.app",
+    //     projectId: "remind-7d375",
+    //     storageBucket: "remind-7d375.appspot.com",
+    //     messagingSenderId: "870876543636",
+    //     appId: "1:870876543636:web:c2005de339a9fba189d281",
+    //     measurementId: "G-DN5M7P6BMZ"
+    // });
+    // let db = firebase.firestore();
+    // db.collection("Remind2").add({
+    //     userId: "Ada",
+    //     notify: "Lovelace",
+    // })
+    // .then((docRef) => {
+    //     console.log("Document written with ID: ", docRef.id);
+    // })
+    // .catch((error) => {
+    //     console.error("Error adding document: ", error);
+    // });
     let root = document.getElementById('root');
     root.innerText = window.location.href;
 </script>
