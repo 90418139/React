@@ -14,61 +14,72 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 <script>
-    // const firebase = require("firebase");
-    // // Required for side-effects
-    // require("firebase/firestore");
-    // // Initialize Cloud Firestore through Firebase
-    // firebase.initializeApp({
-    //     apiKey: "AIzaSyAPCDWzc10yjGG-CmsCXGvZgmOmZ0AybYQ",
-    //     authDomain: "remind-7d375.firebaseapp.com",
-    //     databaseURL: "https://remind-7d375-default-rtdb.asia-southeast1.firebasedatabase.app",
-    //     projectId: "remind-7d375",
-    //     storageBucket: "remind-7d375.appspot.com",
-    //     messagingSenderId: "870876543636",
-    //     appId: "1:870876543636:web:c2005de339a9fba189d281",
-    //     measurementId: "G-DN5M7P6BMZ"
-    // });
-    // let db = firebase.firestore();
-    // db.collection("Remind2").add({
-    //     userId: "Ada",
-    //     notify: "Lovelace",
-    // })
-    // .then((docRef) => {
-    //     console.log("Document written with ID: ", docRef.id);
-    // })
-    // .catch((error) => {
-    //     console.error("Error adding document: ", error);
-    // });
+    let root = document.getElementById('root');
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     const userId = urlParams.get('state');
-    // const data = {
-    //     grant_type: 'authorization_code',
-    //     code: code,
-    //     redirect_uri: 'https://90418139.github.io/React/notify',
-    //     client_id: 'MiC6LIxtzUOk6sipXu6XEN',
-    //     client_secret: '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn'
-    // };
-    // fetch("https://notify-bot.line.me/oauth/token",
-    //     {
-    //         method: "POST",
-    //         mode: 'cors',
-    //         headers: {
-    //             "Content-Type": "application/x-www-form-urlencoded",
-    //             'Access-Control-Allow-Origin': "*"
-    //         },
-    //         body: new URLSearchParams(data),
-    //     }
-    // )
-    // .then(res => res.json())
-    // .then(data => {
-    //     console.log(data)
-    // })
-    // .catch(e => {
-    //     console.error(e);
-    // });
-    let root = document.getElementById('root');
-    root.innerText = window.location.href + ' ' + code + ' ' + userId;
+    const token = getNotifyToken(code);
+    _ = fireStoreAdd(userId, token);
+
+    async function fireStoreAdd(userId, token){
+        const firebase = require("firebase");
+        // Required for side-effects
+        require("firebase/firestore");
+        // Initialize Cloud Firestore through Firebase
+        firebase.initializeApp({
+            apiKey: "AIzaSyAPCDWzc10yjGG-CmsCXGvZgmOmZ0AybYQ",
+            authDomain: "remind-7d375.firebaseapp.com",
+            databaseURL: "https://remind-7d375-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "remind-7d375",
+            storageBucket: "remind-7d375.appspot.com",
+            messagingSenderId: "870876543636",
+            appId: "1:870876543636:web:c2005de339a9fba189d281",
+            measurementId: "G-DN5M7P6BMZ"
+        });
+        let db = firebase.firestore();
+        await db.collection("Remind2").add({
+            userId: userId,
+            notify: token,
+        })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+        return;
+    }
+    async function getNotifyToken(code) {
+        let token = '';
+        const data = {
+            grant_type: 'authorization_code',
+            code: code,
+            redirect_uri: 'https://90418139.github.io/React/notify',
+            client_id: 'MiC6LIxtzUOk6sipXu6XEN',
+            client_secret: '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn'
+        };
+        await fetch("https://notify-bot.line.me/oauth/token",
+            {
+                method: "POST",
+                mode: 'cors',
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    'Access-Control-Allow-Origin': "*"
+                },
+                body: new URLSearchParams(data),
+            }
+        )
+        .then(res => res.json())
+        .then(data => {
+            token = data;
+            root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + data;
+            console.log(data)
+        })
+        .catch(e => {
+            console.error(e);
+        });
+        return token;
+    }
 </script>
 </body>
 </html>
