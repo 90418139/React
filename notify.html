@@ -23,34 +23,34 @@
     const token = getNotifyToken(code);
     _ = fireStoreAdd(userId, token);
 
-    async function fireStoreAdd(userId, token){
-        const firebase = require("firebase");
-        // Required for side-effects
-        require("firebase/firestore");
-        // Initialize Cloud Firestore through Firebase
-        firebase.initializeApp({
-            apiKey: "AIzaSyAPCDWzc10yjGG-CmsCXGvZgmOmZ0AybYQ",
-            authDomain: "remind-7d375.firebaseapp.com",
-            databaseURL: "https://remind-7d375-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "remind-7d375",
-            storageBucket: "remind-7d375.appspot.com",
-            messagingSenderId: "870876543636",
-            appId: "1:870876543636:web:c2005de339a9fba189d281",
-            measurementId: "G-DN5M7P6BMZ"
-        });
-        let db = firebase.firestore();
-        await db.collection("Remind2").add({
-            userId: userId,
-            notify: token,
-        })
-        .then((docRef) => {
-            console.log("Document written with ID: ", docRef.id);
-        })
-        .catch((error) => {
-            console.error("Error adding document: ", error);
-        });
-        return;
-    }
+    // async function fireStoreAdd(userId, token){
+    //     const firebase = require("firebase");
+    //     // Required for side-effects
+    //     require("firebase/firestore");
+    //     // Initialize Cloud Firestore through Firebase
+    //     firebase.initializeApp({
+    //         apiKey: "AIzaSyAPCDWzc10yjGG-CmsCXGvZgmOmZ0AybYQ",
+    //         authDomain: "remind-7d375.firebaseapp.com",
+    //         databaseURL: "https://remind-7d375-default-rtdb.asia-southeast1.firebasedatabase.app",
+    //         projectId: "remind-7d375",
+    //         storageBucket: "remind-7d375.appspot.com",
+    //         messagingSenderId: "870876543636",
+    //         appId: "1:870876543636:web:c2005de339a9fba189d281",
+    //         measurementId: "G-DN5M7P6BMZ"
+    //     });
+    //     let db = firebase.firestore();
+    //     await db.collection("Remind2").add({
+    //         userId: userId,
+    //         notify: token,
+    //     })
+    //     .then((docRef) => {
+    //         console.log("Document written with ID: ", docRef.id);
+    //     })
+    //     .catch((error) => {
+    //         console.error("Error adding document: ", error);
+    //     });
+    //     return;
+    // }
     async function getNotifyToken(code) {
         let fd = new FormData();
         fd.append( 'grant_type', 'authorization_code');
