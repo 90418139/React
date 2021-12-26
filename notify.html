@@ -9,6 +9,14 @@
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
+<form method="post" enctype="application/x-www-form-urlencoded" action="https://notify-bot.line.me/oauth/token">
+    <input type="text" name="grant_type" value="authorization_code">
+    <input type="text" name="code" value="">
+    <input type="text" name="redirect_uri" value="https://90418139.github.io/React/notify">
+    <input type="text" name="client_id" value="MiC6LIxtzUOk6sipXu6XEN">
+    <input type="text" name="client_secret" value="93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn">
+    <button type="submit">submit</button>
+</form>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 <script
