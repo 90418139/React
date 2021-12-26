@@ -23,49 +23,49 @@
     const token = getNotifyToken(code);
     // _ = fireStoreAdd(userId, token);
 
-    // async function fireStoreAdd(userId, token){
-    //     const firebase = require("firebase");
-    //     // Required for side-effects
-    //     require("firebase/firestore");
-    //     // Initialize Cloud Firestore through Firebase
-    //     firebase.initializeApp({
-    //         apiKey: "AIzaSyAPCDWzc10yjGG-CmsCXGvZgmOmZ0AybYQ",
-    //         authDomain: "remind-7d375.firebaseapp.com",
-    //         databaseURL: "https://remind-7d375-default-rtdb.asia-southeast1.firebasedatabase.app",
-    //         projectId: "remind-7d375",
-    //         storageBucket: "remind-7d375.appspot.com",
-    //         messagingSenderId: "870876543636",
-    //         appId: "1:870876543636:web:c2005de339a9fba189d281",
-    //         measurementId: "G-DN5M7P6BMZ"
-    //     });
-    //     let db = firebase.firestore();
-    //     await db.collection("Remind2").add({
-    //         userId: userId,
-    //         notify: token,
-    //     })
-    //     .then((docRef) => {
-    //         console.log("Document written with ID: ", docRef.id);
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error adding document: ", error);
-    //     });
-    //     return;
-    // }
+    async function fireStoreAdd(userId, token){
+        // const firebase = require("firebase");
+        // Required for side-effects
+        // require("firebase/firestore");
+        // Initialize Cloud Firestore through Firebase
+        firebase.initializeApp({
+            apiKey: "AIzaSyAPCDWzc10yjGG-CmsCXGvZgmOmZ0AybYQ",
+            authDomain: "remind-7d375.firebaseapp.com",
+            databaseURL: "https://remind-7d375-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "remind-7d375",
+            storageBucket: "remind-7d375.appspot.com",
+            messagingSenderId: "870876543636",
+            appId: "1:870876543636:web:c2005de339a9fba189d281",
+            measurementId: "G-DN5M7P6BMZ"
+        });
+        let db = firebase.firestore();
+        await db.collection("Remind2").add({
+            userId: userId,
+            notify: token,
+        })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+        return;
+    }
     async function getNotifyToken(code) {
-        let fd = new FormData();
-        fd.append( 'grant_type', 'authorization_code');
-        fd.append( 'code', code);
-        fd.append( 'redirect_uri', 'https://90418139.github.io/React/notify');
-        fd.append( 'client_id', 'MiC6LIxtzUOk6sipXu6XEN');
-        fd.append( 'client_secret', '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn');
+        // let fd = new FormData();
+        // fd.append( 'grant_type', 'authorization_code');
+        // fd.append( 'code', code);
+        // fd.append( 'redirect_uri', 'https://90418139.github.io/React/notify');
+        // fd.append( 'client_id', 'MiC6LIxtzUOk6sipXu6XEN');
+        // fd.append( 'client_secret', '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn');
         let token = 'null';
-        // const data = {
-        //     grant_type: 'authorization_code',
-        //     code: code,
-        //     redirect_uri: 'https://90418139.github.io/React/notify',
-        //     client_id: 'MiC6LIxtzUOk6sipXu6XEN',
-        //     client_secret: '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn'
-        // };
+        const data = {
+            grant_type: 'authorization_code',
+            code: code,
+            redirect_uri: 'https://90418139.github.io/React/notify',
+            client_id: 'MiC6LIxtzUOk6sipXu6XEN',
+            client_secret: '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn'
+        };
         // await fetch("https://notify-bot.line.me/oauth/token",
         //     {
         //         method: "POST",
@@ -89,10 +89,9 @@
         $.ajax({
             type: 'POST',
             url: "https://notify-bot.line.me/oauth/token",
-            processData: false,
-            contentType: false,
+            contentType: 'application/x-www-form-urlencoded',
             dataType: 'jsonp',
-            data:  fd,
+            data:  data,
             success: function (r) {
                 console.log(r);
                 token = r;
