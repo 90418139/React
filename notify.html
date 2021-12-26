@@ -52,12 +52,18 @@
     const userId = urlParams.get('state');
     $('#idForm input[name=code]').val(code);
     $('input[name=token]').on('change', function () {
+        Loading($('#idForm button'));
         let token = JSON.parse($('input[name=token]').val());
         if (token.status !== 200){
             alert('取得失敗請重試!!');
             location.replace(location.href.substring(0, location.href.indexOf('notify')));
         }
         _ = fireStoreAdd(userId, token.access_token);
+    });
+    $('form').on('submit', function () {
+        $('form button[type=submit]').empty();
+        $('form button[type=submit]').prop('disabled', true);
+        $('form button[type=submit]').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>');
     });
     async function fireStoreAdd(userId, token){
         firebase.initializeApp({
@@ -83,6 +89,11 @@
             console.error("Error adding document: ", error);
         });
         return;
+    }
+    function Loading(e) {
+        $(e).empty();
+        $(e).prop('disabled', true);
+        $(e).append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>');
     }
 </script>
 </body>
