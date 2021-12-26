@@ -60,11 +60,6 @@
         }
         _ = fireStoreAdd(userId, token.access_token);
     });
-    $('form').on('submit', function () {
-        $('form button[type=submit]').empty();
-        $('form button[type=submit]').prop('disabled', true);
-        $('form button[type=submit]').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>');
-    });
     async function fireStoreAdd(userId, token){
         firebase.initializeApp({
             apiKey: "AIzaSyAPCDWzc10yjGG-CmsCXGvZgmOmZ0AybYQ",
