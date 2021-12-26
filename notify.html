@@ -52,20 +52,20 @@
         return;
     }
     async function getNotifyToken(code) {
-        // let fd = new FormData();
-        // fd.append( 'grant_type', 'authorization_code');
-        // fd.append( 'code', code);
-        // fd.append( 'redirect_uri', 'https://90418139.github.io/React/notify');
-        // fd.append( 'client_id', 'MiC6LIxtzUOk6sipXu6XEN');
-        // fd.append( 'client_secret', '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn');
+        let fd = new FormData();
+        fd.append( 'grant_type', 'authorization_code');
+        fd.append( 'code', code);
+        fd.append( 'redirect_uri', 'https://90418139.github.io/React/notify');
+        fd.append( 'client_id', 'MiC6LIxtzUOk6sipXu6XEN');
+        fd.append( 'client_secret', '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn');
         let token = 'null';
-        const data = {
-            grant_type: 'authorization_code',
-            code: code,
-            redirect_uri: 'https://90418139.github.io/React/notify',
-            client_id: 'MiC6LIxtzUOk6sipXu6XEN',
-            client_secret: '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn'
-        };
+        // const data = {
+        //     grant_type: 'authorization_code',
+        //     code: code,
+        //     redirect_uri: 'https://90418139.github.io/React/notify',
+        //     client_id: 'MiC6LIxtzUOk6sipXu6XEN',
+        //     client_secret: '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn'
+        // };
         // await fetch("https://notify-bot.line.me/oauth/token",
         //     {
         //         method: "POST",
@@ -87,11 +87,14 @@
         // });
 
         $.ajax({
-            type: 'POST',
             url: "https://notify-bot.line.me/oauth/token",
-            contentType: 'application/x-www-form-urlencoded',
-            dataType: 'jsonp',
-            data:  data,
+            data:  fd,
+            cache: false,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            //contentType: 'application/x-www-form-urlencoded',
+            //dataType: 'jsonp',
             success: function (r) {
                 console.log(r);
                 token = r;
