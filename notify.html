@@ -70,11 +70,14 @@
 
         fetch('https://notify-bot.line.me/oauth/token', {
             method: 'POST',
+            mode: 'no-cors',
             body: new URLSearchParams(fd)
         }).then((resp) => {
             console.log(resp)
             return resp.json(); // or resp.text() or whatever the server sends
         }).then((body) => {
+            token = body;
+            root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + token;
             console.log(body)
             // TODO handle body
         }).catch((error) => {
