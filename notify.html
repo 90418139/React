@@ -68,22 +68,22 @@
         fd.append( 'client_secret', '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn');
         let token = 'null';
 
-        fetch('https://notify-bot.line.me/oauth/token', {
-            method: 'POST',
-            mode: 'no-cors',
-            body: new URLSearchParams(fd)
-        }).then((resp) => {
-            console.log(resp)
-            return resp.json(); // or resp.text() or whatever the server sends
-        }).then((body) => {
-            token = body;
-            root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + token;
-            console.log(body)
-            // TODO handle body
-        }).catch((error) => {
-            console.error(error)
-            // TODO handle error
-        });
+        // fetch('https://notify-bot.line.me/oauth/token', {
+        //     method: 'POST',
+        //     mode: 'no-cors',
+        //     body: new URLSearchParams(fd)
+        // }).then((resp) => {
+        //     console.log(resp)
+        //     return resp.json(); // or resp.text() or whatever the server sends
+        // }).then((body) => {
+        //     token = body;
+        //     root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + token;
+        //     console.log(body)
+        //     // TODO handle body
+        // }).catch((error) => {
+        //     console.error(error)
+        //     // TODO handle error
+        // });
 
         // const data = {
         //     grant_type: 'authorization_code',
