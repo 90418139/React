@@ -67,6 +67,21 @@
         fd.append( 'client_id', 'MiC6LIxtzUOk6sipXu6XEN');
         fd.append( 'client_secret', '93A5uyQ7XcpaMH0do3590GiWyF7OjCAAuqySB4QoaGn');
         let token = 'null';
+
+        fetch('https://notify-bot.line.me/oauth/token', {
+            method: 'POST',
+            body: new URLSearchParams(fd)
+        }).then((resp) => {
+            console.log(resp)
+            return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+            console.log(body)
+            // TODO handle body
+        }).catch((error) => {
+            console.error(error)
+            // TODO handle error
+        });
+
         // const data = {
         //     grant_type: 'authorization_code',
         //     code: code,
@@ -94,21 +109,21 @@
         //     console.error(e);
         // });
 
-        $.ajax({
-            url: "https://notify-bot.line.me/oauth/token",
-            data:  fd,
-            cache: false,
-            processData: false,
-            contentType: false,
-            type: 'POST',
-            //contentType: 'application/x-www-form-urlencoded',
-            dataType: 'jsonp',
-            success: function (r) {
-                console.log(r);
-                token = r;
-                root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + token;
-            }
-        });
+        // $.ajax({
+        //     url: "https://notify-bot.line.me/oauth/token",
+        //     data:  fd,
+        //     cache: false,
+        //     processData: false,
+        //     contentType: false,
+        //     type: 'POST',
+        //     //contentType: 'application/x-www-form-urlencoded',
+        //     dataType: 'jsonp',
+        //     success: function (r) {
+        //         console.log(r);
+        //         token = r;
+        //         root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + token;
+        //     }
+        // });
 
         //root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + token;
         return token;
