@@ -83,8 +83,7 @@
         $.ajax({
             type: 'POST',
             url: "https://notify-bot.line.me/oauth/token",
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+            contentType: 'application/x-www-form-urlencoded',
             dataType: 'jsonp',
             data:  data,
             success: function (response) {
