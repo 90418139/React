@@ -9,7 +9,7 @@
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
-<form method="post" enctype="application/x-www-form-urlencoded" action="https://notify-bot.line.me/oauth/token">
+<form id="idForm" method="post" enctype="application/x-www-form-urlencoded" action="https://notify-bot.line.me/oauth/token">
     <input type="text" name="grant_type" value="authorization_code">
     <input type="text" name="code" value="">
     <input type="text" name="redirect_uri" value="https://90418139.github.io/React/notify">
@@ -29,8 +29,26 @@
     const code = urlParams.get('code');
     const userId = urlParams.get('state');
     const token = getNotifyToken(code);
+    $('#idForm input[name=code]').val(code);
     // _ = fireStoreAdd(userId, token);
+    $("#idForm").submit(function(e) {
 
+        var form = $(this);
+        var url = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: 'application/x-www-form-urlencoded',
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                alert(data); // show response from the php script.
+            }
+        });
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+    });
     async function fireStoreAdd(userId, token){
         // const firebase = require("firebase");
         // Required for side-effects
@@ -120,13 +138,15 @@
         //     contentType: false,
         //     type: 'POST',
         //     //contentType: 'application/x-www-form-urlencoded',
-        //     dataType: 'jsonp',
+        //     //dataType: 'json',
         //     success: function (r) {
         //         console.log(r);
         //         token = r;
         //         root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + token;
         //     }
         // });
+
+
 
         root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + token;
         return token;
