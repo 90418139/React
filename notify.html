@@ -50,7 +50,7 @@
         return;
     }
     async function getNotifyToken(code) {
-        let token = '';
+        let token = 'null';
         const data = {
             grant_type: 'authorization_code',
             code: code,
@@ -72,12 +72,12 @@
         .then(res => res.json())
         .then(data => {
             token = data;
-            root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + data;
             console.log(data)
         })
         .catch(e => {
             console.error(e);
         });
+        root.innerText = window.location.href + '\n' + code + '\n' + userId + '\n' + token;
         return token;
     }
 </script>
