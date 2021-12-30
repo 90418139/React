@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/React/static/css/main.9eafe6ca.css",
-    "main.js": "/React/static/js/main.5353489c.js",
+    "main.js": "/React/static/js/main.0fef0c89.js",
     "static/js/787.a30afd7d.chunk.js": "/React/static/js/787.a30afd7d.chunk.js",
     "static/media/trianglify-v1-cs85g_cc5d2i.jpg": "/React/static/media/trianglify-v1-cs85g_cc5d2i.c3959ab21c1509b15649.jpg",
     "index.html": "/React/index.html",
     "main.9eafe6ca.css.map": "/React/static/css/main.9eafe6ca.css.map",
-    "main.5353489c.js.map": "/React/static/js/main.5353489c.js.map",
+    "main.0fef0c89.js.map": "/React/static/js/main.0fef0c89.js.map",
     "787.a30afd7d.chunk.js.map": "/React/static/js/787.a30afd7d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9eafe6ca.css",
-    "static/js/main.5353489c.js"
+    "static/js/main.0fef0c89.js"
   ]
 }
